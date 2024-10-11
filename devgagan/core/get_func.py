@@ -60,7 +60,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                         try:
                             await msg.pin(both_sides=True)
                         except Exception as e:
-                            await .pin()
+                            await msg.pin()
                     await .copy(LOG_GROUP)                  
                     await edit.delete()
                     return
@@ -73,7 +73,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                         try:
                             await .pin(both_sides=True)
                         except Exception as e:
-                            await .pin()
+                            await msg.pin()
                     await .copy(LOG_GROUP)
                     await edit.delete()
                     return

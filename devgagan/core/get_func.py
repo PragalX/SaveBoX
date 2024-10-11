@@ -54,7 +54,8 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 if msg.media == MessageMediaType.WEB_PAGE:
                     target_chat_id = user_chat_ids.get(chatx, chatx)
                     edit = await app.edit_message_text(target_chat_id, edit_id, "Cloning...")
-                     = await app.send_message(sender, msg.text.markdown)
+                    
+                    response = await app.send_message(sender, msg.text.markdown)
                     if msg.pinned_message:
                         try:
                             await .pin(both_sides=True)

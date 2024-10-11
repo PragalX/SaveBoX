@@ -4,6 +4,9 @@ import asyncio
 import time
 import os
 from telethon import events
+from telethon import events
+from telethon.tl.custom import Button  # Import Button from telethon
+from telethon.sync import TelegramClient
 
 import subprocess
 import requests

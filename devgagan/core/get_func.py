@@ -16,19 +16,12 @@ from devgagan.core.mongo import db
 from pyrogram.types import Message
 from config import MONGO_DB as MONGODB_CONNECTION_STRING, LOG_GROUP
 import cv2
-from telethon import events, Button
-    
+20
 
 # ------------- PDF WATERMARK IMPORTS --------------
 # Will give after 200 star on my repo or 100+ followers ...
 # ------------- PDF WATERMARK IMPORTS --------------
 
-import os
-import time
-import pymongo
-from telethon import events
-from telethon.tl.types import MessageMediaType
-from pyrogram import Client, Button
 
 # Assuming necessary libraries and functions like `progress_bar`, `LOG_GROUP`, `get_user_caption_preference`, `user_chat_ids`, `video_metadata`, `screenshot`, etc., are already defined elsewhere.
 

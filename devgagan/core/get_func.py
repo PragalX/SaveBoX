@@ -7,6 +7,7 @@ from telethon import events
 
 import subprocess
 import requests
+from telethon import events, Button
 from devgagan import app
 from devgagan import sex as gf
 import pymongo

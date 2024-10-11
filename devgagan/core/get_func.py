@@ -54,26 +54,26 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 if msg.media == MessageMediaType.WEB_PAGE:
                     target_chat_id = user_chat_ids.get(chatx, chatx)
                     edit = await app.edit_message_text(target_chat_id, edit_id, "Cloning...")
-                    devgaganin = await app.send_message(sender, msg.text.markdown)
+                     = await app.send_message(sender, msg.text.markdown)
                     if msg.pinned_message:
                         try:
-                            await devgaganin.pin(both_sides=True)
+                            await .pin(both_sides=True)
                         except Exception as e:
-                            await devgaganin.pin()
-                    await devgaganin.copy(LOG_GROUP)                  
+                            await .pin()
+                    await .copy(LOG_GROUP)                  
                     await edit.delete()
                     return
             if not msg.media:
                 if msg.text:
                     target_chat_id = user_chat_ids.get(chatx, chatx)
                     edit = await app.edit_message_text(target_chat_id, edit_id, "Cloning...")
-                    devgaganin = await app.send_message(sender, msg.text.markdown)
+                     = await app.send_message(sender, msg.text.markdown)
                     if msg.pinned_message:
                         try:
-                            await devgaganin.pin(both_sides=True)
+                            await .pin(both_sides=True)
                         except Exception as e:
-                            await devgaganin.pin()
-                    await devgaganin.copy(LOG_GROUP)
+                            await .pin()
+                    await .copy(LOG_GROUP)
                     await edit.delete()
                     return
             
@@ -121,7 +121,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 duration= metadata['duration']
 
                 if duration <= 300:
-                    devgaganin = await app.send_video(chat_id=sender, video=file, caption=caption, height=height, width=width, duration=duration, thumb=None, progress=progress_bar, progress_args=('**UPLOADING:**\n', edit, time.time())) 
+                     = await app.send_video(chat_id=sender, video=file, caption=caption, height=height, width=width, duration=duration, thumb=None, progress=progress_bar, progress_args=('**UPLOADING:**\n', edit, time.time())) 
                     if msg.pinned_message:
                         try:
                             await devgaganin.pin(both_sides=True)
@@ -465,7 +465,7 @@ async def settings_command(event):
         [Button.inline("Remove Words", b'delete'), Button.inline("Reset", b'reset')],
         [Button.inline("Login", b'addsession'), Button.inline("Logout", b'logout')],
         [Button.inline("Set Thumbnail", b'setthumb'), Button.inline("Remove Thumbnail", b'remthumb')],
-        [Button.url("Report Errors", "https://t.me/devgaganin")]
+        [Button.url("Report Errors", "https://t.me/pragyan")]
     ]
     
     await gf.send_file(

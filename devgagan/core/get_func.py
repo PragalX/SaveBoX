@@ -3,6 +3,8 @@
 import asyncio
 import time
 import os
+from telethon import events
+
 import subprocess
 import requests
 from devgagan import app

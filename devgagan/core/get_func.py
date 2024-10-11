@@ -58,7 +58,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                     response = await app.send_message(sender, msg.text.markdown)
                     if msg.pinned_message:
                         try:
-                            await .pin(both_sides=True)
+                            await msg.pin(both_sides=True)
                         except Exception as e:
                             await .pin()
                     await .copy(LOG_GROUP)                  

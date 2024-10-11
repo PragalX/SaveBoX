@@ -39,7 +39,7 @@ async def subscribe(app, message):
             await message.reply_text("You are Banned. Contact -- @pragyan")
             return 1
       except UserNotParticipant:
-         await message.reply_photo(photo="https://ibb.co/Fzmdy0T",caption=script.FORCE_MSG.format(message.from_user.mention), reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Join Now...", url=f"{url}")]]))
+         await message.reply_photo(photo="https://ibb.co/hmb3kVw",caption=script.FORCE_MSG.format(message.from_user.mention), reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Join Now...", url=f"{url}")]]))
          return 1
       except Exception:
          await message.reply_text("Something Went Wrong. Contact us @pragyan...")

@@ -86,7 +86,8 @@ async def get_premium(client, message):
         await message.reply_text("ᴜꜱᴀɢᴇ : /check user_id")
 
 
-@app.on_message(filters.command("add") & filters.user(OWNER_ID))
+
+  @app.on_message(filters.command("add") & filters.user(OWNER_ID))
 async def give_premium_cmd_handler(client, message):
     time_zone = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
     current_time = time_zone.strftime("%d-%m-%Y\n⏱️ ᴊᴏɪɴɪɴɢ ᴛɪᴍᴇ : %I:%M:%S %p") 
@@ -108,11 +109,19 @@ async def give_premium_cmd_handler(client, message):
         user_id = int(message.command[1])
         user = await client.get_users(user_id)
     else:
-        await message.reply_text("Usage: /add username time (e.g., '1 day for days', '1 hour for hours', or '1 min for minutes')")
+        await message.reply_text("Usage: /add <username> <time> or reply to a user with the command.")
         return
 
-    time = message.command[-1]
-    seconds = await get_seconds(time)
+    time_input = message.command[-1]
+    seconds = await get_seconds(time_input)
+
+    # Ensure seconds is an integer
+    if isinstance(seconds, str):
+        try:
+            seconds = int(seconds)
+        except ValueError:
+            await message.reply_text("Invalid time format. Please use a valid time format.")
+            return
 
     if seconds > 0:
         expiry_time = datetime.datetime.now() + datetime.timedelta(seconds=seconds)  
@@ -120,11 +129,14 @@ async def give_premium_cmd_handler(client, message):
         data = await plans_db.check_premium(user_id)
         expiry = data.get("expire_date")   
         expiry_str_in_ist = expiry.astimezone(pytz.timezone("Asia/Kolkata")).strftime("%d-%m-%Y\n⏱️ ᴇxᴘɪʀʏ ᴛɪᴍᴇ : %I:%M:%S %p")         
-        await message.reply_text(f"ᴘʀᴇᴍɪᴜᴍ ᴀᴅᴅᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ✅\n\n👤 ᴜꜱᴇʀ : {user}\n⚡ ᴜꜱᴇʀ ɪᴅ : <code>{user_id}</code>\n⏰ ᴘʀᴇᴍɪᴜᴍ ᴀᴄᴄᴇꜱꜱ : <code>{time}</code>\n\n⏳ ᴊᴏɪɴɪɴɢ ᴅᴀᴛᴇ : {current_time}\n\n⌛️ ᴇxᴘɪʀʏ ᴅᴀᴛᴇ : {expiry_str_in_ist} \n\n__**Powered by Pragyan__**", disable_web_page_preview=True)
+        
+        await message.reply_text(f"ᴘʀᴇᴍɪᴜᴍ ᴀᴅᴅᴇᴅ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ✅\n\n👤 ᴜꜱᴇʀ : {user}\n⚡ ᴜꜱᴇʀ ɪᴅ : <code>{user_id}</code>\n⏰ ᴘʀᴇᴍɪᴜᴍ ᴀᴄᴄᴇꜱꜱ : <code>{time_input}</code>\n\n⏳ ᴊᴏɪɴɪɴɢ ᴅᴀᴛᴇ : {current_time}\n\n⌛️ ᴇxᴘɪʀʏ ᴅᴀᴛᴇ : {expiry_str_in_ist} \n\n__**Powered by Pragyan__**", disable_web_page_preview=True)
 
         await client.send_message(
             chat_id=user_id,
-            text=f"👋 ʜᴇʏ {user},\nᴛʜᴀɴᴋ ʏᴏᴜ ꜰᴏʀ ᴘᴜʀᴄʜᴀꜱɪɴɢ ᴘʀᴇᴍɪᴜᴍ.\nᴇɴᴊᴏʏ !! ✨🎉\n\n⏰ ᴘʀᴇᴍɪᴜᴍ ᴀᴄᴄᴇꜱꜱ : <code>{time}</code>\n⏳ ᴊᴏɪɴɪɴɢ ᴅᴀᴛᴇ : {current_time}\n\n⌛️ ᴇxᴘɪʀʏ ᴅᴀᴛᴇ : {expiry_str_in_ist}", disable_web_page_preview=True
+            text=f"👋 ʜᴇʏ {user},\nᴛʜᴀɴᴋ ʏᴏᴜ ꜰᴏʀ ᴘᴜʀᴄʜᴀꜱɪɴɢ ᴘʀᴇᴍɪᴜᴍ.\nᴇɴᴊᴏʏ !! ✨🎉\n\n⏰ ᴘʀᴇᴍɪᴜᴍ ᴀᴄᴄᴇꜱꜱ : <code>{time_input}</code>\n⏳ ᴊᴏɪɴɪɴɢ ᴅᴀᴛᴇ : {current_time}\n\n⌛️ ᴇxᴘɪʀʏ ᴅᴀᴛᴇ : {expiry_str_in_ist}", disable_web_page_preview=True
         )    
     else:
+        await message.reply_text("Invalid time format. Please use '1 day for days', '1 hour for hours', '1 min for minutes', '1 month for months', or '1 year for years'.")
+
         await message.reply_text("Invalid time format. Please use '1 day for days', '1 hour for hours', or '1 min for minutes', or '1 month for months' or '1 year for year'")
